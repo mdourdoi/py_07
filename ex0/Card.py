@@ -9,13 +9,15 @@ class Card(ABC):
             int(cost)
         except ValueError:
             raise ValueError(f"{cost} is not a valid cost value")
+        except TypeError:
+            raise TypeError("Cost cannot be none")
 
-        if (rarity.capitalize()
+        if (rarity
                 not in ("Common", "Uncommon", "Rare", "Legendary")):
             ret_error = f'{rarity} is not a rarity, must be '
             ret_error += '"Common", "Uncommon", "Rare" or "Legendary"'
             raise ValueError(ret_error)
-        
+
         self.name: str = str(name)
         self.cost: int = int(cost)
         self.rarity: str = str(rarity)

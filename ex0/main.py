@@ -36,4 +36,4 @@ if __name__ == "__main__":
     print("Playable:", fire_dragon.is_playable(3))
     print()
 
-    print("Abstract pattern successfully desmonstrated!")
+    print("Abstract pattern successfully demonstrated!")

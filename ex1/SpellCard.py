@@ -13,7 +13,8 @@ class SpellCard(Card):
         if str(effect_type) not in ('buff', 'debuff', 'heal', 'damage'):
             raise ValueError(f"{effect_type} is not a valid effect_type")
         super().__init__(name, cost, rarity)
-        self.effect_type = str(effect_type)
+        self.type: str = 'spell'
+        self.effect_type: str = str(effect_type)
 
     def play(self, game_state: Dict) -> Dict:
         ret: Dict = {}
@@ -24,5 +25,6 @@ class SpellCard(Card):
 
     def resolve_effect(self, game_state: Dict) -> Dict:
         ret: Dict = {}
+        ret['resolved'] = True
         ret['effect'] = self.effect_type
-        ret.targets
+        return ret

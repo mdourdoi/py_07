@@ -11,16 +11,24 @@ class CreatureCard(Card):
             attack: int,
             health: int) -> None:
         try:
-            int(attack) > 0
+            test = int(attack) > 0
+            if not test:
+                raise ValueError(f"{attack} is not a valid attack value")
         except ValueError:
             raise ValueError(f"{attack} is not a valid attack value")
+        except TypeError:
+            raise TypeError("Attack cannot be None")
         try:
-            int(health) > 0
+            test = int(health) > 0
+            if not test:
+                raise ValueError(f"{health} is not a valid health value")
         except ValueError:
             raise ValueError(f"{health} is not a valid health value")
+        except TypeError:
+            raise TypeError("Health cannot be None")
 
         super().__init__(name, cost, rarity)
-        self.type = 'creature'
+        self.type: str = 'creature'
         self.attack: int = int(attack)
         self.health: int = int(health)
 
