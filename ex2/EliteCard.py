@@ -39,7 +39,7 @@ class EliteCard(Card, Combatable, Magical):
         except ValueError:
             raise ValueError(f"{cur_mana_val} is not a valid mana value")
         except TypeError:
-            raise TypeError("Defense cannot be none")
+            raise TypeError("Mana cannot be none")
 
         super().__init__(name, cost, rarity)
         self.atk_val: int = int(atk_val)
@@ -47,19 +47,37 @@ class EliteCard(Card, Combatable, Magical):
         self.cur_mana_val: int = int(cur_mana_val)
 
     def attack(self, target: Any) -> Dict:
-        raise NotImplementedError
+        target_name = getattr(target, 'name', str(target))
+        return {'attacker': self.name,
+            'target': target_name,
+            'damage': self.atk_val,
+            'combat_type': 'melee'}
 
     def defend(self, incoming_damage: int) -> Dict:
-        raise NotImplementedError
+        damage_taken = max(0, incoming_damage - self.def_val)
+        damage_blocked = min(incoming_damage, self.def_val)
+        return {'defender': self.name,
+            'damage_taken': damage_taken,
+            'damage_blocked': damage_blocked,
+            'still_alive': True}
 
     def get_combat_stats(self) -> Dict:
-        raise NotImplementedError
+        return {'attack': self.atk_val, 'defense': self.def_val}
 
     def cast_spell(self, spell_name: str, targets: list) -> Dict:
-        raise NotImplementedError
+        return {'caster': self.name,
+            'spell': spell_name,
+            'targets': targets,
+            'mana_used': 4}
 
     def channel_mana(self, amount: int) -> Dict:
-        raise NotImplementedError
+        self.cur_mana_val += amount
+        return {'channeled': amount,
+            'total_mana': self.cur_mana_val}
 
     def get_magic_stats(self) -> Dict:
-        raise NotImplementedError
+        return {'mana': self.cur_mana_val}
+
+    def play(self, game_state: Dict) -> Dict:
+        return {'card_played': self.name,
+            'mana_used': self.cost}
