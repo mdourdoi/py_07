@@ -12,7 +12,8 @@ class ArtifactCard(Card):
             durability: int,
             effect: str) -> None:
         try:
-            int(durability)
+            if int(durability) <= 1:
+                raise ValueError(f"{durability} is not a valid durability")
         except ValueError:
             raise ValueError(f"{durability} is not a valid durability")
         except TypeError:

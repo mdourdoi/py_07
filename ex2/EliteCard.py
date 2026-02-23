@@ -72,7 +72,7 @@ class EliteCard(Card, Combatable, Magical):
         return {'defender': self.name,
                 'damage_taken': damage_taken,
                 'damage_blocked': damage_blocked,
-                'still_alive': damage_taken >= self.cur_hp}
+                'still_alive': damage_taken <= self.cur_hp}
 
     def get_combat_stats(self) -> Dict:
         return {'attack': self.atk_val, 'defense': self.def_val}
