@@ -1,7 +1,6 @@
 from typing import Any, Dict, List
 from ex0.Card import Card
 from ex3.CardFactory import CardFactory
-from ex3.FantasyCardFactory import FantasyCardFactory
 from ex3.GameStrategy import GameStrategy
 
 
@@ -20,8 +19,8 @@ class GameEngine:
             self,
             factory: CardFactory | None = None,
             strategy: GameStrategy | None = None,
-            hand: List[Card] = [],
-            battlefield: List[Card] = []):
+            hand: List[Card] = list(),
+            battlefield: List[Card] = list()):
         if not (isinstance(factory, CardFactory) or factory is None):
             raise TypeError(f'{factory} is not a valid factory')
         if not (isinstance(strategy, GameStrategy) or strategy is None):
@@ -50,10 +49,11 @@ class GameEngine:
         self.factory = factory
 
     def set_example_hand(self) -> None:
-        factory = FantasyCardFactory()
-        self.hand = [factory.create_creature(5),
-                     factory.create_creature(2),
-                     factory.create_spell(3)]
+        if self.factory is None:
+            raise RuntimeError("Factory is not configured")
+        self.hand = [self.factory.create_creature(5),
+                     self.factory.create_creature(2),
+                     self.factory.create_spell(3)]
         self.cards_created += 3
 
     def simulate_turn(self) -> Dict[str, Any] | None:

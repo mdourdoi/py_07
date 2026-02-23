@@ -92,16 +92,16 @@ class FantasyCardFactory(CardFactory):
         if size <= 0:
             return deck
         for i in range(size):
-            card_type = choice(['creature', 'spells', 'artifacts'])
+            card_type = choice(['creature', 'spell', 'artifact'])
             if card_type == "creature":
                 c = choice(creatures)
-                deck[f'{c.name}i'] = self.create_creature(c[0])
+                deck[f'{c}i'] = self.create_creature(c)
             elif card_type == "spell":
                 s = choice(spells)
-                deck[f'{c.name}i'] = self.create_spell(s[0])
+                deck[f'{s}i'] = self.create_spell(s)
             else:
                 a = choice(artifacts)
-                deck[f'{c.name}i'] = self.create_artifact(a[0])
+                deck[f'{a}i'] = self.create_artifact(a)
         return deck
 
     def get_supported_types(self) -> Dict[str, List[str]]:

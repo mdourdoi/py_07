@@ -8,12 +8,12 @@ class GameStrategy(ABC):
     @abstractmethod
     def execute_turn(self, hand: List[Card],
                      battlefield: List[Card]) -> Dict[str, Any]:
-        return NotImplementedError
+        raise NotImplementedError
 
     @abstractmethod
     def get_strategy_name(self) -> str:
-        return NotImplementedError
+        raise NotImplementedError
 
     @abstractmethod
-    def prioritize_target(self, available_targets: List[Card]) -> List[Any]:
-        return NotImplementedError
+    def prioritize_targets(self, available_targets: List[Card]) -> List[Any]:
+        raise NotImplementedError

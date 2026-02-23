@@ -10,12 +10,12 @@ class AggressiveStrategy(GameStrategy):
     def get_strategy_name(self) -> str:
         return 'AggressiveStrategy'
 
-    def prioritize_target(self, available_targets: List[Card]) -> List[Any]:
+    def prioritize_targets(self, available_targets: List[Card]) -> List[Any]:
         weakest_opp = None
         for card in available_targets:
             if weakest_opp is None or card.health < weakest_opp.health:
                 weakest_opp = card
-        return ['Ennemy player', weakest_opp]
+        return ['Enemy player', weakest_opp]
 
     @staticmethod
     def get_lowest_creature(
@@ -60,11 +60,11 @@ class AggressiveStrategy(GameStrategy):
         index, lowest_spell = self.get_lowest_damage_spell(hand_cpy)
         if lowest_spell is not None:
             played.append(lowest_spell.name)
-            mana_used += lowest_creature.cost
-            damage += lowest_creature.cost
+            mana_used += lowest_spell.cost
+            damage += lowest_spell.cost
             hand_cpy.pop(index)
 
-        targets = self.prioritize_target(battlefield)[:1]
+        targets = self.prioritize_targets(battlefield)[:1]
 
         return {'cards_played': played,
                 'mana_used': mana_used,
