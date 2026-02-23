@@ -1,8 +1,11 @@
 # FantasyCardFactory.py
-from ex3.CardFactory import CardFactory
 from ex0.CreatureCard import CreatureCard
+from ex0.Card import Card
 from ex1.SpellCard import SpellCard
 from ex1.ArtifactCard import ArtifactCard
+from ex3.CardFactory import CardFactory
+from typing import Dict, List
+from random import choice
 
 
 class FantasyCardFactory(CardFactory):
@@ -80,3 +83,30 @@ class FantasyCardFactory(CardFactory):
             if name_or_power.capitalize() == 'Staff':
                 return staff
         return empty_artifact
+
+    def create_themed_deck(self, size: int) -> Dict[str, Card]:
+        creatures = ['Dragon', 'Wizard', 'Gobelin']
+        spells = ['Bolt', 'Fireball', 'Shard']
+        artifacts = ['Ring', 'Crystal', 'Staff']
+        deck = dict()
+        if size <= 0:
+            return deck
+        for i in range(size):
+            card_type = choice(['creature', 'spells', 'artifacts'])
+            if card_type == "creature":
+                c = choice(creatures)
+                deck[f'{c.name}i'] = self.create_creature(c[0])
+            elif card_type == "spell":
+                s = choice(spells)
+                deck[f'{c.name}i'] = self.create_spell(s[0])
+            else:
+                a = choice(artifacts)
+                deck[f'{c.name}i'] = self.create_artifact(a[0])
+        return deck
+
+    def get_supported_types(self) -> Dict[str, List[str]]:
+        breakdown = dict()
+        breakdown['creatures'] = ['dragon', 'goblin', 'wizard', 'weakling']
+        breakdown['spells'] = ['bolt', 'fireball', 'shard', 'fizzle']
+        breakdown['artifacts'] = ['crystal', 'ring', 'staff', 'empty_artifact']
+        return breakdown

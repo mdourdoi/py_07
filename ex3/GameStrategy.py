@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 from ex0.Card import Card
 
 
@@ -7,7 +7,7 @@ class GameStrategy(ABC):
 
     @abstractmethod
     def execute_turn(self, hand: List[Card],
-                     battlefield: List[Card]) -> Dict[Any:Any]:
+                     battlefield: List[Card]) -> Dict[str, Any]:
         return NotImplementedError
 
     @abstractmethod
@@ -15,5 +15,5 @@ class GameStrategy(ABC):
         return NotImplementedError
 
     @abstractmethod
-    def prioritize_target(self, available_targets: List[Card]) -> List[Card]:
+    def prioritize_target(self, available_targets: List[Card]) -> List[Any]:
         return NotImplementedError

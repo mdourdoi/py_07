@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Any
+from typing import Any, Dict
 from ex0.Card import Card
 
 
@@ -18,9 +18,9 @@ class CardFactory(ABC):
         return NotImplementedError
 
     @abstractmethod
-    def create_themed_deck(self, size: int) -> Dict[str:Card]:
+    def create_themed_deck(self, size: int) -> Dict[str, Card]:
         return NotImplementedError
 
     @abstractmethod
-    def get_supported_types(self) -> Dict[Any:Any]:
+    def get_supported_types(self) -> Dict[str, Any]:
         return NotImplementedError
