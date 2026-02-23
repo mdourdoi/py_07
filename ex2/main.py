@@ -4,11 +4,13 @@ from ex2.Combatable import Combatable
 from ex2.Magical import Magical
 from typing import Type, List
 
+
 def get_public_methods(cls: Type) -> List[str]:
-    return [m for m in dir(cls) if not m.startswith('_') and callable(getattr(cls, m))]
+    return [m for m in dir(cls) if not m.startswith('_')
+            and callable(getattr(cls, m))]
 
 
-if __name__ == "__main__":
+def main() -> None:
     print("=== DataDeck Ability System ===")
     print()
 
@@ -17,9 +19,18 @@ if __name__ == "__main__":
     print(f"- Combatable: {get_public_methods(Combatable)}")
     print(f"- Magical: {get_public_methods(Magical)}")
     print()
-    
+
     print("Playing Arcane Warrior (Elite Card):")
-    warrior = EliteCard("Arcane Warrior", 6, "Legendary", 5, 3, 4)
+    warrior = EliteCard(
+        name="Arcane Warrior",
+        cost=6,
+        rarity="Legendary",
+        atk_val=5,
+        def_val=3,
+        cur_hp=15,
+        combat_type='melee',
+        cur_mana_val=4)
+
     print()
 
     print("Combat phase:")
@@ -28,8 +39,19 @@ if __name__ == "__main__":
     print()
 
     print("Magic phase:")
-    print(f"Spell cast: {warrior.cast_spell('Fireball', ['Enemy1', 'Enemy2'])}")
-    print(f"Mana channel: {warrior.channel_mana(3)}")
+    print(
+        f"Spell cast: {warrior.cast_spell('Fireball', ['Enemy1', 'Enemy2'])}")
+    try:
+        print(f"Mana channel: {warrior.channel_mana(3)}")
+    except ValueError as cur_error:
+        print(f"Mana channel: {cur_error}")
     print()
 
     print("Multiple interface implementation successful!")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (ValueError, TypeError) as cur_error:
+        print(f'Error: {cur_error}')
