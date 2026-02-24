@@ -1,4 +1,4 @@
-from ex0.Card import CreatureCard
+from ex0.CreatureCard import CreatureCard
 from ex1.ArtifactCard import ArtifactCard
 from ex1.SpellCard import SpellCard
 from ex1.Deck import Deck
@@ -38,7 +38,7 @@ def main() -> None:
         print()
         while deck.deck:
             card = deck.draw_card()
-            print('Drew:', card.name)
+            print('Drew:', card.name, f'({card.type})')
             print('Play result:', card.play({}))
             print()
     except EmptyDeckError as cur_error:

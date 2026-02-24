@@ -14,6 +14,7 @@ class TournamentPlatform():
                 return 'This id is already registered'
             self.reg[card.card_id] = card
             ret = ''
+            ret += f'{card.name} (ID: {card.card_id}):\n'
             for key, value in card.get_rank_info().items():
                 ret += f'- {key}: {value}\n'
             return ret

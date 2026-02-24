@@ -51,7 +51,7 @@ class Deck:
             'avg_cost': 0}
         for card in self.deck:
             ret['avg_cost'] += card.cost
-            ret[f'{card.type}s'] += 1
+            ret[f'{card.type.lower()}s'] += 1
         if ret['total_cards'] != 0:
             ret['avg_cost'] = float(ceil(ret['avg_cost'] / ret['total_cards']))
         return ret

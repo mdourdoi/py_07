@@ -28,7 +28,7 @@ class CreatureCard(Card):
             raise TypeError("Health cannot be None")
 
         super().__init__(name, cost, rarity)
-        self.type: str = 'creature'
+        self.type: str = 'Creature'
         self.attack: int = int(attack)
         self.health: int = int(health)
 
@@ -46,5 +46,5 @@ class CreatureCard(Card):
         ret: Dict = {}
         ret['card_played'] = self.name
         ret['mana_used'] = self.cost
-        ret['effect'] = 'Creature summoned to the battlefield'
+        ret['effect'] = 'Creature summoned to battlefield'
         return ret

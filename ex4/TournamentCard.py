@@ -19,7 +19,7 @@ class TournamentCard(Card, Combatable, Rankable):
             base_rating: int,
             card_id: str) -> None:
         try:
-            if int(atk_val) < 0:
+            if int(atk_val) <= 0:
                 raise ValueError(f'{atk_val} is not a valid attack input')
         except ValueError:
             raise ValueError(f'{atk_val} is not a valid attack input')
@@ -103,7 +103,7 @@ class TournamentCard(Card, Combatable, Rankable):
             if int(losses) <= 0:
                 raise ValueError(f'{losses} is not a valid losses input')
         except ValueError:
-            raise ValueError(f'{losses} is not a valid wins input')
+            raise ValueError(f'{losses} is not a valid losses input')
         self.losses += int(losses)
 
     def get_rank_info(self) -> Dict[str, Any]:

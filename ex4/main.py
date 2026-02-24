@@ -15,9 +15,7 @@ def main() -> None:
     wizard = TournamentCard(
         "Ice Wizard", 4, "Rare", 6, 3, 12, 0, 0, 1150, "wizard_001")
 
-    print(f"{dragon.name} (ID: {dragon.card_id}):")
     print(platform.register_card(dragon))
-    print(f"{wizard.name} (ID: {wizard.card_id}):")
     print(platform.register_card(wizard))
 
     print("Creating tournament match...")
@@ -27,10 +25,12 @@ def main() -> None:
 
     print("Tournament Leaderboard:")
     leaderboard = platform.get_leaderboard()
-    for i, card in enumerate(leaderboard, start=1):
+    i = 1
+    for card in leaderboard:
         print(
             f"{i}. {card.name} - Rating: {card.calculate_rating()} "
             f"({card.wins}-{card.losses})")
+        i += 1
     print()
 
     print("Platform Report:")

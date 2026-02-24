@@ -8,6 +8,8 @@ class GameEngine:
 
     @staticmethod
     def is_cardlist(data: Any) -> bool:
+        if data is None:
+            return True
         if not isinstance(data, list):
             return False
         for item in data:
@@ -19,8 +21,8 @@ class GameEngine:
             self,
             factory: CardFactory | None = None,
             strategy: GameStrategy | None = None,
-            hand: List[Card] = list(),
-            battlefield: List[Card] = list()):
+            hand: List[Card] | None = None,
+            battlefield: List[Card] | None = None):
         if not (isinstance(factory, CardFactory) or factory is None):
             raise TypeError(f'{factory} is not a valid factory')
         if not (isinstance(strategy, GameStrategy) or strategy is None):
@@ -32,11 +34,17 @@ class GameEngine:
 
         self.factory: CardFactory | None = factory
         self.strategy: GameStrategy | None = strategy
-        self.hand: List[Card] = hand
-        self.battlefield: List[Card] = battlefield
+        if hand is None:
+            self.hand: List[Card] = []
+        else:
+            self.hand: List[Card] = hand
+        if battlefield is None:
+            self.battlefield: List[Card] = []
+        else:
+            self.battlefield: List[Card] = battlefield
         self.turns_simulated: int = 0
         self.total_damage: int = 0
-        self.cards_created: int = len(hand)
+        self.cards_created: int = len(self.hand)
 
     def configure_engine(self, factory: CardFactory,
                          strategy: GameStrategy) -> None:
@@ -59,7 +67,7 @@ class GameEngine:
     def simulate_turn(self) -> Dict[str, Any] | None:
         if self.strategy is None:
             raise RuntimeError("Strategy is not defined")
-        if len(self.hand) == 0:
+        if self.hand is None or len(self.hand) == 0:
             self.set_example_hand()
         mock_turn = self.strategy.execute_turn(self.hand, self.battlefield)
         self.turns_simulated += 1

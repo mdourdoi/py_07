@@ -18,7 +18,7 @@ def main() -> None:
     print(fire_dragon.get_card_info())
     print()
 
-    print("Playing Fire Dragon with 6 mana available")
+    print("Playing Fire Dragon with 6 mana available:")
     print("Playable:", fire_dragon.is_playable(6))
     print("Play result:", fire_dragon.play({}))
     print()

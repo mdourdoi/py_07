@@ -1,5 +1,5 @@
 from ex0.Card import Card
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 
 class SpellCard(Card):
@@ -13,7 +13,7 @@ class SpellCard(Card):
         if str(effect_type) not in ('buff', 'debuff', 'heal', 'damage'):
             raise ValueError(f"{effect_type} is not a valid effect_type")
         super().__init__(name, cost, rarity)
-        self.type: str = 'spell'
+        self.type: str = 'Spell'
         self.effect_type: str = str(effect_type)
 
     def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
@@ -23,7 +23,7 @@ class SpellCard(Card):
         ret['effect'] = self.effect_type
         return ret
 
-    def resolve_effect(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
+    def resolve_effect(self, targets: List[Any]) -> Dict[str, Any]:
         ret: Dict = {}
         ret['resolved'] = True
         ret['effect'] = self.effect_type

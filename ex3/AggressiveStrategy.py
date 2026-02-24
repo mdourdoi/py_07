@@ -15,7 +15,7 @@ class AggressiveStrategy(GameStrategy):
         for card in available_targets:
             if weakest_opp is None or card.health < weakest_opp.health:
                 weakest_opp = card
-        return ['Enemy player', weakest_opp]
+        return ['Enemy Player', weakest_opp]
 
     @staticmethod
     def get_lowest_creature(
@@ -25,8 +25,9 @@ class AggressiveStrategy(GameStrategy):
         index = 0
         for card in hand:
             if isinstance(card, CreatureCard):
-                lowest_cost = card
-                index = i
+                if lowest_cost is None or card.cost < lowest_cost.cost:
+                    lowest_cost = card
+                    index = i
             i += 1
         return [index, lowest_cost]
 
@@ -39,8 +40,9 @@ class AggressiveStrategy(GameStrategy):
         for card in hand:
             if isinstance(card, SpellCard):
                 if card.effect_type == 'damage':
-                    lowest_cost = card
-                    index = 0
+                    if lowest_cost is None or card.cost < lowest_cost.cost:
+                        lowest_cost = card
+                        index = i
             i += 1
         return [index, lowest_cost]
 

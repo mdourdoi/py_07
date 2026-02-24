@@ -12,7 +12,7 @@ class ArtifactCard(Card):
             durability: int,
             effect: str) -> None:
         try:
-            if int(durability) <= 1:
+            if int(durability) < 1:
                 raise ValueError(f"{durability} is not a valid durability")
         except ValueError:
             raise ValueError(f"{durability} is not a valid durability")
@@ -21,7 +21,7 @@ class ArtifactCard(Card):
         if str(effect)[:11] != "Permanent: ":
             raise ValueError(f"{effect} is not a valid effect")
         super().__init__(name, cost, rarity)
-        self.type: str = 'artifact'
+        self.type: str = 'Artifact'
         self.durability: int = int(durability)
         self.effect: str = str(effect)
 
