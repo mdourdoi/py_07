@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict
+from typing import Dict, Any
 
 
 class Card(ABC):
@@ -23,10 +23,10 @@ class Card(ABC):
         self.rarity: str = str(rarity)
 
     @abstractmethod
-    def play(self, game_state: Dict) -> Dict:
+    def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         raise NotImplementedError
 
-    def get_card_info(self) -> Dict:
+    def get_card_info(self) -> Dict[str, Any]:
         return self.__dict__
 
     def is_playable(self, available_mana: int) -> bool:

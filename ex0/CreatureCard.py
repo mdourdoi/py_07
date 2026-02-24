@@ -1,5 +1,5 @@
 from ex0.Card import Card
-from typing import Dict
+from typing import Dict, Any
 
 
 class CreatureCard(Card):
@@ -42,7 +42,7 @@ class CreatureCard(Card):
         ret['combat_resolved'] = True
         return ret
 
-    def play(self, game_state: Dict) -> Dict:
+    def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         ret: Dict = {}
         ret['card_played'] = self.name
         ret['mana_used'] = self.cost

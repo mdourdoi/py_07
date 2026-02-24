@@ -1,5 +1,5 @@
-from ex0 import Card
-from typing import Dict
+from ex0.Card import Card
+from typing import Dict, Any
 
 
 class SpellCard(Card):
@@ -16,14 +16,14 @@ class SpellCard(Card):
         self.type: str = 'spell'
         self.effect_type: str = str(effect_type)
 
-    def play(self, game_state: Dict) -> Dict:
+    def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         ret: Dict = {}
         ret['card_played'] = self.name
         ret['mana_used'] = self.cost
         ret['effect'] = self.effect_type
         return ret
 
-    def resolve_effect(self, game_state: Dict) -> Dict:
+    def resolve_effect(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         ret: Dict = {}
         ret['resolved'] = True
         ret['effect'] = self.effect_type

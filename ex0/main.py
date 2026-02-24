@@ -1,6 +1,7 @@
 from ex0 import CreatureCard
 
-if __name__ == "__main__":
+
+def main() -> None:
     print()
     print("=== DataDeck Card Foundation ===")
     print()
@@ -37,3 +38,10 @@ if __name__ == "__main__":
     print()
 
     print("Abstract pattern successfully demonstrated!")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as cur_error:
+        print(f'Error: {cur_error}')

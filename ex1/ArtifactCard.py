@@ -1,5 +1,5 @@
-from ex0 import Card
-from typing import Dict
+from ex0.Card import Card
+from typing import Dict, Any
 
 
 class ArtifactCard(Card):
@@ -25,12 +25,12 @@ class ArtifactCard(Card):
         self.durability: int = int(durability)
         self.effect: str = str(effect)
 
-    def play(self, game_state: dict) -> Dict:
+    def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         ret: Dict = {}
         ret['card_played'] = self.name
         ret['mana_used'] = self.cost
         ret['effect'] = self.effect
         return ret
 
-    def activate_ability(self) -> Dict:
+    def activate_ability(self) -> Dict[str, str]:
         return {'effect': self.effect, 'activated': True}

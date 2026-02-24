@@ -70,13 +70,13 @@ class TournamentCard(Card, Combatable, Rankable):
         ret['effect'] = 'Card played in the tournament'
         return ret
 
-    def attack(self, target: Any) -> Dict:
+    def attack(self, target: Any) -> Dict[str, Any]:
         target_name = getattr(target, 'name', str(target))
         return {'attacker': self.name,
                 'target': target_name,
                 'damage': self.atk_val}
 
-    def defend(self, incoming_damage: int) -> Dict:
+    def defend(self, incoming_damage: int) -> Dict[str, Any]:
         damage_taken = max(0, incoming_damage - self.def_val)
         damage_blocked = min(incoming_damage, self.def_val)
         return {'defender': self.name,
@@ -84,7 +84,7 @@ class TournamentCard(Card, Combatable, Rankable):
                 'damage_blocked': damage_blocked,
                 'still_alive': damage_taken <= self.hp_val}
 
-    def get_combat_stats(self) -> Dict:
+    def get_combat_stats(self) -> Dict[str, Any]:
         return {'attack': self.atk_val, 'defense': self.def_val}
 
     def calculate_rating(self) -> int:

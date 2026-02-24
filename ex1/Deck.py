@@ -1,6 +1,6 @@
-from ex0 import Card
+from ex0.Card import Card
 import random
-from typing import Dict, List
+from typing import Dict, List, Any
 from math import ceil
 
 
@@ -35,14 +35,14 @@ class Deck:
     def shuffle(self) -> None:
         random.shuffle(self.deck)
 
-    def draw_card(self) -> Card | None:
+    def draw_card(self) -> Card:
         if len(self.deck) == 0:
             raise EmptyDeckError("Error : deck is empty")
         card = self.deck[0]
         self.deck.pop(0)
         return card
 
-    def get_deck_stats(self) -> Dict:
+    def get_deck_stats(self) -> Dict[str, Any]:
         ret = {
             'total_cards': len(self.deck),
             'creatures': 0,

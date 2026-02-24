@@ -1,7 +1,11 @@
-from ex0 import CreatureCard
-from ex1 import ArtifactCard, SpellCard, Deck, EmptyDeckError
+from ex0.Card import CreatureCard
+from ex1.ArtifactCard import ArtifactCard
+from ex1.SpellCard import SpellCard
+from ex1.Deck import Deck
+from ex1.Deck import EmptyDeckError
 
-if __name__ == "__main__":
+
+def main() -> None:
     fire_dragon = CreatureCard(
         name="Fire Dragon",
         cost=5,
@@ -41,3 +45,10 @@ if __name__ == "__main__":
         print(f'Error: {cur_error}')
 
     print('Polymorphism in action: Same interface, different card behaviors!')
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as cur_error:
+        print(f'Error: {cur_error}')
