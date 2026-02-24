@@ -12,7 +12,7 @@ class Card(ABC):
         except TypeError:
             raise TypeError("Cost cannot be none")
 
-        if (rarity
+        if (rarity.capitalize()
                 not in ("Common", "Uncommon", "Rare", "Legendary")):
             ret_error = f'{rarity} is not a rarity, must be '
             ret_error += '"Common", "Uncommon", "Rare" or "Legendary"'
