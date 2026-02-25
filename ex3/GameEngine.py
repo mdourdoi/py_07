@@ -6,7 +6,6 @@ from ex3.GameStrategy import GameStrategy
 
 class GameEngine:
 
-    @staticmethod
     def is_cardlist(data: Any) -> bool:
         if data is None:
             return True
@@ -16,6 +15,8 @@ class GameEngine:
             if not isinstance(item, Card):
                 return False
         return True
+
+    is_cardlist = staticmethod(is_cardlist)
 
     def __init__(
             self,

@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import Dict, Any
 
 
@@ -22,7 +22,6 @@ class Card(ABC):
         self.cost: int = int(cost)
         self.rarity: str = str(rarity)
 
-    @abstractmethod
     def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         raise NotImplementedError
 

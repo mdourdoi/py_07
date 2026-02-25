@@ -17,7 +17,6 @@ class AggressiveStrategy(GameStrategy):
                 weakest_opp = card
         return ['Enemy Player', weakest_opp]
 
-    @staticmethod
     def get_lowest_creature(
             hand: List[Card]) -> Tuple[int, CreatureCard | None]:
         lowest_cost = None
@@ -31,7 +30,8 @@ class AggressiveStrategy(GameStrategy):
             i += 1
         return [index, lowest_cost]
 
-    @staticmethod
+    get_lowest_creature = staticmethod(get_lowest_creature)
+
     def get_lowest_damage_spell(
             hand: List[Card]) -> Tuple[int, SpellCard | None]:
         lowest_cost = None
@@ -45,6 +45,8 @@ class AggressiveStrategy(GameStrategy):
                         index = i
             i += 1
         return [index, lowest_cost]
+
+    get_lowest_damage_spell = staticmethod(get_lowest_damage_spell)
 
     def execute_turn(self, hand: List[Card],
                      battlefield: List[Card]) -> Dict[str, Any]:
