@@ -9,8 +9,14 @@ class GameStrategy(ABC):
                      battlefield: List[Card]) -> Dict[str, Any]:
         raise NotImplementedError
 
+    execute_turn.__isabstractmethod__ = True
+
     def get_strategy_name(self) -> str:
         raise NotImplementedError
 
+    get_strategy_name.__isabstractmethod__ = True
+
     def prioritize_targets(self, available_targets: List[Card]) -> List[Any]:
         raise NotImplementedError
+
+    prioritize_targets.__isabstractmethod__ = True

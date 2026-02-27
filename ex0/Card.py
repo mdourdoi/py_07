@@ -25,6 +25,8 @@ class Card(ABC):
     def play(self, game_state: Dict[Any, Any]) -> Dict[str, Any]:
         raise NotImplementedError
 
+    play.__isabstractmethod__ = True
+
     def get_card_info(self) -> Dict[str, Any]:
         return self.__dict__
 

@@ -8,7 +8,7 @@ class EmptyDeckError(Exception):
     pass
 
 
-class Deck:
+class Deck():
 
     def __init__(self, *cards: Card) -> None:
         temp_deck = []

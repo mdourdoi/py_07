@@ -4,7 +4,7 @@ from ex3.CardFactory import CardFactory
 from ex3.GameStrategy import GameStrategy
 
 
-class GameEngine:
+class GameEngine():
 
     def is_cardlist(data: Any) -> bool:
         if data is None:
